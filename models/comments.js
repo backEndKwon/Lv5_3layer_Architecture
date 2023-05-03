@@ -42,21 +42,12 @@ module.exports = (sequelize, DataTypes) => {
       nickname: {
         allowNull: false,
         type: Sequelize.STRING,
-      },
-      createdAt: {
-        allowNull: false,
-        type: Sequelize.DATE,
-        defaultValue: Sequelize.NOW,
-      },
-      updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE,
-        defaultValue: Sequelize.NOW,
-      },
+      }
     },
     {
       sequelize,
       modelName: "Comments",
+      timestamps : true
     }
   );
   return Comments;

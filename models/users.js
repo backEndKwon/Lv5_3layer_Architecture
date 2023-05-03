@@ -37,21 +37,12 @@ module.exports = (sequelize, DataTypes) => {
       password: {
         allowNull: false, // NOT NULL
         type: Sequelize.STRING,
-      },
-      createdAt: {
-        allowNull: false, // NOT NULL
-        type: Sequelize.DATE,
-        defaultValue: Sequelize.NOW,
-      },
-      updatedAt: {
-        allowNull: false, // NOT NULL
-        type: Sequelize.DATE,
-        defaultValue: Sequelize.NOW,
-      },
+      }
     },
     {
       sequelize,
       modelName: "Users",
+      timestamps : true
     }
   );
   return Users;

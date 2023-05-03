@@ -34,21 +34,12 @@ module.exports = (sequelize, DataTypes) => {
       UserId: {
         type: Sequelize.INTEGER,
         allowNull: false,
-      },
-      createdAt: {
-        allowNull: false,
-        type: Sequelize.DATE,
-        defaultValue: DataTypes.NOW,
-      },
-      updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE,
-        defaultValue: Sequelize.NOW,
-      },
+      }
     },
     {
       sequelize,
       modelName: "Likes",
+      timestamps : true
     }
   );
   return Likes;
