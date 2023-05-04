@@ -2,7 +2,7 @@
 "use strict";
 const Sequelize = require("sequelize");
 const { Model } = require("sequelize");
-module.exports = (sequelize, DataTypes) => {
+module.exports = (sequelize) => {
   class Posts extends Model {
     static associate(models) {
       //user와 1:N관계
@@ -35,10 +35,6 @@ module.exports = (sequelize, DataTypes) => {
         type: Sequelize.INTEGER,
       },
       title: {
-        allowNull: false, // NOT NULL
-        type: Sequelize.STRING,
-      },
-      nickname: {
         allowNull: false, // NOT NULL
         type: Sequelize.STRING,
       },

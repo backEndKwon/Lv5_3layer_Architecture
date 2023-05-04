@@ -38,10 +38,6 @@ module.exports = (sequelize, DataTypes) => {
       comment: {
         allowNull: false,
         type: Sequelize.STRING,
-      },
-      nickname: {
-        allowNull: false,
-        type: Sequelize.STRING,
       }
     },
     {
