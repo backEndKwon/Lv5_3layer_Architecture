@@ -43,12 +43,12 @@ class PostsController {
   // 3) 게시글 상세 조회
   getDetailPost = async (req, res, next) => {
     const { postId } = req.params;
-    // try {
-      const DetailPost = await this.postService.findOnePost(postId);
-      return res.status(200).json({ DetailPost: DetailPost });
-    // } catch (err) {
-    //   return res.status(400).json({ errorMessage: "게시물 상세조회 실패" });
-    // }
+    try {
+    const DetailPost = await this.postService.findOnePost(postId);
+    return res.status(200).json({ DetailPost: DetailPost });
+    } catch (err) {
+      return res.status(400).json({ errorMessage: "게시물 상세조회 실패" });
+    }
   };
 
   // 4) 게시글 수정
@@ -58,27 +58,27 @@ class PostsController {
     const { title, content } = req.body;
     //게시글 존재여부 확인
     const checkPost = await this.postService.findOnePost(postId);
-    console.log(checkPost)
+    console.log(checkPost);
 
-      if (!checkPost) {
-        throw new Error("412, 수정할 게시글 없음");
-      }
-      //userid 검증 완료
-      if (userId !== checkPost.UserId) {
-        throw new Error("412, 수정 권한 없음");
-      }
-      if (typeof title !== "string") {
-        throw new Error("412, 제목 형식 올바르지 않음");
-      }
-      if (typeof content !== "string") {
-        throw new Error("412, 내용 형식 올바르지 않음");
-      }
-      if (!title || !content) {
-        throw new Error("412, 데이터 형식 올바르지 않음");
-      }
+    if (!checkPost) {
+      throw new Error("412, 수정할 게시글 없음");
+    }
+    //userid 검증 완료
+    if (userId !== checkPost.UserId) {
+      throw new Error("412, 수정 권한 없음");
+    }
+    if (typeof title !== "string") {
+      throw new Error("412, 제목 형식 올바르지 않음");
+    }
+    if (typeof content !== "string") {
+      throw new Error("412, 내용 형식 올바르지 않음");
+    }
+    if (!title || !content) {
+      throw new Error("412, 데이터 형식 올바르지 않음");
+    }
 
-      await this.postService.modifyPost(title, content, postId);
-      return res.status(200).json({ message: "게시글 수정완료" });
+    await this.postService.modifyPost(title, content, postId);
+    return res.status(200).json({ message: "게시글 수정완료" });
   };
 
   // 5) 게시글 삭제
@@ -87,22 +87,22 @@ class PostsController {
     const { postId } = req.params;
     //게시글 존재여부 확인
     const checkPost2 = await this.postService.findOnePost(postId);
-    // try {
-      if (!checkPost2) {
-        throw new Error("412, 삭제할할 게시글 없음");
-      }
-      //userid 검증 완료
-      console.log(userId)
-      console.log(checkPost2.userId)
-      if (userId !== checkPost2.userId) {
-        throw new Error("412, 삭제 권한 없음");
-      }
-      await this.postService.deletePost(postId);
-      return res.status(200).json({ message: "게시글 삭제완료" });
-    // } catch (err) {
-    //   console.error(err);
-    //   throw new Error("400, 게시글 삭제 실패");
-    // }
+    try {
+    if (!checkPost2) {
+      throw new Error("412, 삭제할할 게시글 없음");
+    }
+    //userid 검증 완료
+    console.log(userId);
+    console.log(checkPost2.userId);
+    if (userId !== checkPost2.userId) {
+      throw new Error("412, 삭제 권한 없음");
+    }
+    await this.postService.deletePost(postId);
+    return res.status(200).json({ message: "게시글 삭제완료" });
+    } catch (err) {
+      console.error(err);
+      throw new Error("400, 게시글 삭제 실패");
+    }
   };
 }
 

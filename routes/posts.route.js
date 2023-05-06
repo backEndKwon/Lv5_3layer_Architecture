@@ -10,10 +10,10 @@ router.post("/posts", authMiddleware, postsController.createPost);
 //게시글 조회
 router.get("/posts", postsController.getPost);
 //게시글 상세조회
-router.get('/posts/:postId', postsController.getDetailPost);
+router.get("/posts/:postId", postsController.getDetailPost);
 //게시글 수정
-router.put('/posts/:postId', authMiddleware, postsController.putPost);
+router.put("/posts/:postId", authMiddleware, postsController.putPost);
 //게시글 삭제
-router.delete('/posts/:postId',authMiddleware, postsController.deletePost);
+router.delete("/posts/:postId", authMiddleware, postsController.deletePost);
 
 module.exports = router;

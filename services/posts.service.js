@@ -35,10 +35,10 @@ class PostService {
   // 3) 게시글 상세 조회
   findOnePost = async (postId) => {
     const DetailPost = await this.postRepository.findOnePost(postId);
-   console.log(DetailPost)
-   
-      return {
-      postId : postId,
+    console.log(DetailPost);
+
+    return {
+      postId: postId,
       userId: DetailPost.UserId,
       title: DetailPost.title,
       content: DetailPost.content,
@@ -50,7 +50,11 @@ class PostService {
 
   // 4) 게시글 수정=>userid검증 안된 상태
   modifyPost = async (title, content, postId) => {
-    const modifyPost = await this.postRepository.modifyPost(title, content, postId);
+    const modifyPost = await this.postRepository.modifyPost(
+      title,
+      content,
+      postId
+    );
     return modifyPost;
   };
 
