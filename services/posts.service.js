@@ -35,9 +35,11 @@ class PostService {
   // 3) 게시글 상세 조회
   findOnePost = async (postId) => {
     const DetailPost = await this.postRepository.findOnePost(postId);
-    return {
-      postId: DetailPost.postId,
-      UserId: DetailPost.UserId,
+   console.log(DetailPost)
+   
+      return {
+      postId : postId,
+      userId: DetailPost.UserId,
       title: DetailPost.title,
       content: DetailPost.content,
       likes: DetailPost.likes,

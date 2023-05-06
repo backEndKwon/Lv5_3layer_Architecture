@@ -5,8 +5,8 @@ class CommentService {
 
   createComments = async (postId, userId, content) => {
     const createComments = await this.postRepository.createComments(
-      userId,
       postId,
+      userId,
       content
     );
     return createComments;

@@ -19,8 +19,12 @@ class PostRepository {
 
   // 3) 게시글 상세조회
   findOnePost = async (postId) => {
-    const DetailPosts = await Posts.findByPk(postId);
-    return DetailPosts;
+    const posts = await Posts.findByPk(postId);
+    
+    console.log(posts)
+
+    console.log("레파"+posts)
+    return posts;
   };
 
   // 4) 게시글 수정 =>userid검증 안된 상태

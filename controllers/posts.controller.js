@@ -58,7 +58,8 @@ class PostsController {
     const { title, content } = req.body;
     //게시글 존재여부 확인
     const checkPost = await this.postService.findOnePost(postId);
-    try {
+    console.log(checkPost)
+
       if (!checkPost) {
         throw new Error("412, 수정할 게시글 없음");
       }
@@ -78,9 +79,6 @@ class PostsController {
 
       await this.postService.modifyPost(title, content, postId);
       return res.status(200).json({ message: "게시글 수정완료" });
-    } catch (err) {
-      throw new Error("400, 게시글이 정상적으로 수정되지 않음");
-    }
   };
 
   // 5) 게시글 삭제
@@ -89,17 +87,18 @@ class PostsController {
     const { postId } = req.params;
     //게시글 존재여부 확인
     const checkPost2 = await this.postService.findOnePost(postId);
-
     // try {
       if (!checkPost2) {
         throw new Error("412, 삭제할할 게시글 없음");
       }
       //userid 검증 완료
-      if (userId !== checkPost2.UserId) {
+      console.log(userId)
+      console.log(checkPost2.userId)
+      if (userId !== checkPost2.userId) {
         throw new Error("412, 삭제 권한 없음");
       }
       await this.postService.deletePost(postId);
-      return res.stauts(200).json({ message: "게시글 삭제완료" });
+      return res.status(200).json({ message: "게시글 삭제완료" });
     // } catch (err) {
     //   console.error(err);
     //   throw new Error("400, 게시글 삭제 실패");
