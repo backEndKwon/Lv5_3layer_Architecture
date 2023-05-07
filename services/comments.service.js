@@ -1,15 +1,16 @@
-const CommentRepository = require("../repositories/posts.repository");
+const CommentRepository = require("../repositories/comments.repository");
 
 class CommentService {
   commentRepository = new CommentRepository();
 
   createComments = async (postId, userId, content) => {
-    const createComments = await this.postRepository.createComments(
+    console.log("서비스   " + postId, userId, content);
+    const CreateComments = await this.commentRepository.createsComments(
       postId,
       userId,
       content
     );
-    return createComments;
+    return CreateComments;
   };
 
   findOnePost = async (postId) => {
@@ -20,8 +21,6 @@ class CommentService {
       comment: DetailComment.content,
     };
   };
-
-  
 }
 
 module.exports = CommentService;

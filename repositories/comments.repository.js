@@ -2,13 +2,13 @@ const { Comments, Posts } = require("../models");
 
 class CommentRepository {
   // 1) 댓글 등록
-  createComments = async (postId, userId, content) => {
+  createsComments = async (postId, userId, content) => {
     const createComments = await Comments.create({
       UserId : userId,
       PostId : postId,
       comment : content,
     });
-    console.log(createComments)
+    console.log("레퍼지토리 : :"+createComments)
     return createComments;
   };
 
