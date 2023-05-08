@@ -44,8 +44,8 @@ class PostsController {
   getDetailPost = async (req, res, next) => {
     const { postId } = req.params;
     try {
-    const DetailPost = await this.postService.findOnePost(postId);
-    return res.status(200).json({ DetailPost: DetailPost });
+      const DetailPost = await this.postService.findOnePost(postId);
+      return res.status(200).json({ DetailPost: DetailPost });
     } catch (err) {
       return res.status(400).json({ errorMessage: "게시물 상세조회 실패" });
     }
@@ -88,17 +88,17 @@ class PostsController {
     //게시글 존재여부 확인
     const checkPost2 = await this.postService.findOnePost(postId);
     try {
-    if (!checkPost2) {
-      throw new Error("412, 삭제할할 게시글 없음");
-    }
-    //userid 검증 완료
-    console.log(userId);
-    console.log(checkPost2.userId);
-    if (userId !== checkPost2.userId) {
-      throw new Error("412, 삭제 권한 없음");
-    }
-    await this.postService.deletePost(postId);
-    return res.status(200).json({ message: "게시글 삭제완료" });
+      if (!checkPost2) {
+        throw new Error("412, 삭제할할 게시글 없음");
+      }
+      //userid 검증 완료
+      console.log(userId);
+      console.log(checkPost2.userId);
+      if (userId !== checkPost2.userId) {
+        throw new Error("412, 삭제 권한 없음");
+      }
+      await this.postService.deletePost(postId);
+      return res.status(200).json({ message: "게시글 삭제완료" });
     } catch (err) {
       console.error(err);
       throw new Error("400, 게시글 삭제 실패");

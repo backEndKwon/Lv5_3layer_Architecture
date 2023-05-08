@@ -44,6 +44,7 @@ module.exports = (sequelize) => {
       },
       likes: {
         type: Sequelize.INTEGER,
+        defaultValue:0
       }
     },
     {

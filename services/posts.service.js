@@ -63,6 +63,21 @@ class PostService {
     await this.postRepository.deletePost(postId);
     return;
   };
+
+  // 6) 게시물 좋아요 누르기
+  //likes있으면 -1, 없으면 +1
+  checkLike = async (userId, postId) => {
+    const checklike = await this.postRepository.checkLike(userId, postId);
+    return checklike;
+  };
+  likeUp = async (postId, userId) => {
+    const likeUp = await this.postRepository.likeUp(postId, userId);
+    return likeUp;
+  };
+  likeDown = async (postId, userId) => {
+    const likeDown = await this.postRepository.likeDown(postId, userId);
+    return likeDown;
+  };
 }
 
 module.exports = PostService;

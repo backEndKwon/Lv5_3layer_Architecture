@@ -16,4 +16,5 @@ router.put("/posts/:postId", authMiddleware, postsController.putPost);
 //게시글 삭제
 router.delete("/posts/:postId", authMiddleware, postsController.deletePost);
 
+
 module.exports = router;

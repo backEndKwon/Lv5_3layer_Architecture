@@ -20,10 +20,6 @@ class PostRepository {
   // 3) 게시글 상세조회
   findOnePost = async (postId) => {
     const posts = await Posts.findByPk(postId);
-    
-    console.log(posts)
-
-    console.log("레파"+posts)
     return posts;
   };
 
