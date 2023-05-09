@@ -14,11 +14,7 @@ class LikeRepository {
     const checkLikeOne = await Likes.findOne({
       where: { UserId: userId, PostId: postId  },
     });
-    console.log("UserId :: ",Likes.UserId)
-    console.log("userId :: ",userId)
-    console.log("PostId :: ",Likes.PostId)
-    console.log("postId :: ",postId)
-    console.log("콘솔로그::: ", checkLikeOne);
+    
     return checkLikeOne;
   };
   // 6-2-1) 좋아요 up => likes테이블 생성

@@ -1,5 +1,6 @@
 //상위계층
 const LikeService = require("../services/likes.service");
+const { Posts } = require("../models");
 
 class LikesController {
   likeService = new LikeService(); //PostsController Class멤버변수로 할당
@@ -38,6 +39,24 @@ class LikesController {
     } catch (err) {
       console.error(`control 좋아요 에러`, err);
       throw new Error("400, 다른 사유로 좋아요 실패");
+    }
+  };
+
+  getLikesPost = async (req, res, next) => {
+   const {postId} = req.params
+    try {
+      const PostAll = await Posts.findByPk(postId);
+      if (PostAll.likes < 1) {
+        return res
+          .status(400)
+          .json({ errorMessage: "좋아요 받은 게시물이 없습니다." });
+      }
+      if (PostAll.likes > 0) {
+        return res.status(200).json({ PostAll });
+      }
+    } catch (err) {
+      console.error(err);
+      return res.status(400).json({ errorMessage: "좋아요게시물 조회 실패" });
     }
   };
 }
