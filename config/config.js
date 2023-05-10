@@ -1,25 +1,27 @@
-require("dotenv").config()
+require('dotenv').config()
 const env = process.env
 
-const development = {
-    "username": "root",
-    "password": "rkd785985",
-    "database": "Lv5",
-    "host": "express-database.clplypyzjltq.ap-northeast-2.rds.amazonaws.com",
+const config = {
+  development: {
+    "username": process.env.DB_USER || "root",
+    "password": process.env.DB_PASSWORD || "rkd785985",
+    "database": process.env.DB_NAME || "Lv5",
+    "host": process.env.DB_HOST || "express-database.clplypyzjltq.ap-northeast-2.rds.amazonaws.com",
     "dialect": "mysql"
-  }
-  const test= {
+  },
+  test : {
     "username": "root",
     "password": null,
     "database": "database_test",
     "host": "127.0.0.1",
     "dialect": "mysql"
-  }
-  const production = {
+  },production : {
     "username": "root",
     "password": null,
     "database": "database_production",
     "host": "127.0.0.1",
     "dialect": "mysql"
   }
-  
+
+}
+module.exports = config;
