@@ -1,5 +1,7 @@
 const jwt = require("jsonwebtoken");
 const { Users } = require("../models");
+require('dotenv').config()
+const env = process.env
 
 module.exports = async (req, res, next) => {
   try {
@@ -12,7 +14,7 @@ module.exports = async (req, res, next) => {
     }
 
     // 1-3) 디코드 작업
-    const decodedToken = jwt.verify(token, "kwon-custom-key");
+    const decodedToken = jwt.verify(token, env.DB_KEY);
     const userId = decodedToken.userId;
     const user = await Users.findOne({ where: { userId } });
     res.locals.user = user;
